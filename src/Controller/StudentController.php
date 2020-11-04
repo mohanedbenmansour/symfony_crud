@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Form\StudentSearchType;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,14 +41,18 @@ return  $this->render('student/add.html.twig',[
      * /Symfony/Component/HttpFoundation/Response
      * @Route("/student/affiche", name="show_student")
      */
-    public function show()
+    public function show(Request $request)
     {
-        $repository = $this->getDoctrine()
-            ->getRepository(    Student::class);
-        $students=$repository->findAll();
-
-
-
+        $repository = $this->getDoctrine()->getRepository(   Student::class);
+       // $students=$repository->findAll();
+        $students=$repository->findStudentOrderByNsc();
+      $form=$this->createForm(StudentSearchType::class);
+      $form->handleRequest($request);
+      if($form->isSubmitted())
+      { $nsc=$form->getData()->getNSC();
+$studentResult=$this->getDoctrine()->getRepository(Student::class)->searchStudentByNSC($nsc);
+          return $this->render("student/affiche.html.twig",["students"=>$studentResult]);
+      }
         return $this->render("student/affiche.html.twig",["students"=>$students]);
     }
     /**

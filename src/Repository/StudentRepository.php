@@ -18,7 +18,20 @@ class StudentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Student::class);
     }
+    public function findStudentOrderByNsc(){
+        return $this->createQueryBuilder('student')
+            ->orderBy("student.NSC","ASC")
+            ->getQuery()
+            ->getResult();
+    }
 
+    public function searchStudentByNSC($NSC){
+        return $this->createQueryBuilder('student')
+            ->where("student.NSC LIKE :NSC")
+            ->setParameter("NSC","%".$NSC."%")
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Student[] Returns an array of Student objects
     //  */
