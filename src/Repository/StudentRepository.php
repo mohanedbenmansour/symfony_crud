@@ -24,7 +24,14 @@ class StudentRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
+    //------question 3
+    public function findStudentOrderByClassroom(){
+        return $this->createQueryBuilder('student')
+            ->orderBy("student.classroom","ASC")
+            ->getQuery()
+            ->getResult();
+    }
+//----------question 1+2-----------------
     public function searchStudentByNSC($NSC){
         return $this->createQueryBuilder('student')
             ->where("student.NSC LIKE :NSC")
@@ -32,6 +39,7 @@ class StudentRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
     // /**
     //  * @return Student[] Returns an array of Student objects
     //  */

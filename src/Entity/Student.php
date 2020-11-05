@@ -27,6 +27,12 @@ class Student
      */
     private $Email;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Classroom::class, inversedBy="students")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $classroom;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,4 +61,17 @@ class Student
 
         return $this;
     }
+
+    public function getClassroom(): ?Classroom
+    {
+        return $this->classroom;
+    }
+
+    public function setClassroom(?Classroom $classroom): self
+    {
+        $this->classroom = $classroom;
+
+        return $this;
+    }
+
 }

@@ -9,29 +9,24 @@
 <body>
 
 <div class="container pt-2 text-center">
-    <h1>affiche Club</h1>
+    <h1>affiche Classroom</h1>
 
     <table class="table">
         <thead>
         <tr>
             <th scope="col">id</th>
-            <th scope="col">ref</th>
-            <th scope="col">creation date</th>
-            <th scope="col">enable</th>
-
+            <th scope="col">name</th>
             <th scope="col">delete or modify</th>
         </tr>
         </thead>
         <tbody>
 
-        <tr {% for club in clubs %}>
-            <th scope="row">{{ club.id }}</th>
-            <td>{{ club.ref }}</td>
-            <td>{{ club.creationDate |date("m/d/Y") }}</td>
-            <td>{{ club.enable }}</td>
+        <tr {% for classroom in classrooms %}>
+            <th scope="row">{{ classroom.id }}</th>
+            <td>{{ classroom.name }}</td>
 
-            <td><a class="btn btn-success" href="{{ path("editClub",{"id":club.id}) }}">edit</a>
-                <a class="btn btn-danger" href="{{ path("deleteClub",{"id":club.id}) }}">delete</a></td>
+            <td><a class="btn btn-success" href="{{ path("editClassroom",{"id":classroom.id}) }}">edit</a>
+                <a class="btn btn-danger" href="{{ path("deleteClassroom",{"id":classroom.id}) }}">delete</a></td>
         </tr {% endfor %}>
 
         </tbody>

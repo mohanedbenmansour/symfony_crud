@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Club;
+use Doctrine\DBAL\Types\BooleanType;
 use Doctrine\DBAL\Types\DateType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
@@ -23,10 +24,18 @@ class ClubType extends AbstractType
                     'class'=>"form-control"
                 ]
             ])
+            ->add('enable',IntegerType::class,[
+                'label'=>"enable",
+                'attr'=>[
+                    "placeholder"=>"0 for enable 1 for disable",
+                    'class'=>"form-control"
+                ]
+            ])
             ->add('creation_date' ,DateTimeType::class,[
                 'label'=>"creation_date",
 
             ])
+
         ;
     }
 

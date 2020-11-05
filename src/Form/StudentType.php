@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Student;
+use Doctrine\ORM\Mapping\Entity;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -24,6 +25,14 @@ class StudentType extends AbstractType
                 'label'=>"email",
                 'attr'=>[
                     "placeholder"=>"add email",
+                    'class'=>"form-control"
+                ]
+            ])
+
+            ->add('classroom',TextType::class,[
+                'label'=>"classroom",
+                'attr'=>[
+                    "placeholder"=>"add classroom",
                     'class'=>"form-control"
                 ]
             ])

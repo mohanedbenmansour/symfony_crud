@@ -27,6 +27,11 @@ class Club
      */
     private $creation_date;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $enable;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class Club
     public function setCreationDate(\DateTimeInterface $creation_date): self
     {
         $this->creation_date = $creation_date;
+
+        return $this;
+    }
+
+    public function getEnable(): ?bool
+    {
+        return $this->enable;
+    }
+
+    public function setEnable(bool $enable): self
+    {
+        $this->enable = $enable;
 
         return $this;
     }

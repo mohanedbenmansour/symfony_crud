@@ -45,15 +45,16 @@ return  $this->render('student/add.html.twig',[
     {
         $repository = $this->getDoctrine()->getRepository(   Student::class);
        // $students=$repository->findAll();
-        $students=$repository->findStudentOrderByNsc();
+       // $students=$repository->findStudentOrderByNsc();
+        $students=$repository->findStudentOrderByClassroom();
       $form=$this->createForm(StudentSearchType::class);
       $form->handleRequest($request);
       if($form->isSubmitted())
       { $nsc=$form->getData()->getNSC();
 $studentResult=$this->getDoctrine()->getRepository(Student::class)->searchStudentByNSC($nsc);
-          return $this->render("student/affiche.html.twig",["students"=>$studentResult]);
+          return $this->render("student/affiche.html.twig",["students"=>$studentResult, 'form'=>$form->createView()]);
       }
-        return $this->render("student/affiche.html.twig",["students"=>$students]);
+        return $this->render("student/affiche.html.twig",["students"=>$students ,'form'=>$form->createView()]);
     }
     /**
      * @Route("/student/edit/{id}",name="edit")

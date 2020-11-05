@@ -45,7 +45,10 @@ class ClubController extends AbstractController
     {
         $repository = $this->getDoctrine()
             ->getRepository(    Club::class);
-        $clubs=$repository->findAll();
+       // $clubs=$repository->findAll();
+
+        //-------question 4 + 5--------
+        $clubs=$repository->findClubOrderByDate();
 
 
 
